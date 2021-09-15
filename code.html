@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <title>APP NAME: A Coding Project By Ron Aviles</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="css/site.css" rel="stylesheet">
+    <link href="css/prism.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png?">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png?">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/img/site.webmanifest">
+
+</head>
+
+<body class="d-flex flex-column h-100">
+    <!--nav section-->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/index.html"><img src="img/mark.png"
+                    class="border border-2 d-inline-block align-text-top" width="30" height="30"> APP NAME</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link " href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/app.html">The App</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/code.html">The Code</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="https://ronaviles.netlify.app">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--main section-->
+    <main class="flex-shrink-0">
+        <div class="container py-5 px-5 mt-5">
+            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME.</h2>
+            <div class="row row-cols-1 row-cols-lg-2">
+                <div class="col-lg-8">
+                    <pre class="line-numbers">
+                        <code class="language-javascript">
+                            //Call hello world
+                            function HelloWorld(){
+                            alert("hello world");
+                            }
+                        </code>
+                    </pre>
+                </div>
+                <div class="col-lg-4">
+                    <h4 class="border-bottom mb-3">Code explanation below.</h4>
+                    <h5>getValues()</h5>
+                    <p>The code is broken into separate functions to divide the necessary steps before bringing them back together to display the result onto the page.</p>
+                    <p>The getValues( ) function starts and ends the entire process. Starting by identifying what the user-entered start and end values are, converting them to integers and then validating the data before passing it on to the next step.</p>
+
+                    <h5>generateNumbers()</h5>                    
+                    <p>The generateNumbers( ) function creates an array with every number integer from the start value to the end value (inclusive) and then passes it to the final step.</p>
+
+                    <h5>displayNumbers()</h5>
+                    <p>The displayNumbers( ) function iterates through the array that is passed in. On each iteration it assigns a "class" variable either an even or odd value depending on if the current value in the array that is being accessed is even or odd.</p>
+                    <p>Then it injects the currently accessed number and its corresponding class into the table to be displayed. From here we access the injected class in CSS to change the font-weight to bold for every even value.</p>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--footer section-->
+    <footer class="footer mt-auto py-3">
+        <div class="container-fluid">
+            <div class="row gy-2">
+                <div class="col-12 col-lg-4 order-last order-lg-first  text-light">
+                    <div><span class="text-muted">&copy;2021</span> Ron Aviles | Ronald.n.aviles@gmail.com</div>
+                </div>
+                <div class="col-12 col-lg-4 d-flex align-items-center justify-content-start justify-content-lg-center">
+                    <img src="/img/Long_Logo-removebg-preview (1).png" alt="Ron Aviles Logo" height="30">
+                </div>"
+                <div class="col-12 col-lg d-flex align-items-center justify-content-start justify-content-lg-end">
+                    <div class="row">
+                        <div class="col social"><a href="https://www.linkedin.com/in/ron-aviles/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                        </div>
+                        <div class="col social"><a href="https://github.com/RonAviles" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                        </div>
+                        <div class="col social"><a href="https://twitter.com/RonAviles_" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
+    </script>
+    <script src="js/prism.js"></script>
+    <script>
+        Prism.plugins.NormalizeWhitespace.setDefaults({
+            'remove-trailing': true,
+            'remove-indent': true,
+            'left-trim': true,
+            'right-trim': true
+        })
+    </script>
+</body>
+
+</html>
