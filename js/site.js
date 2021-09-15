@@ -30,11 +30,11 @@ function getValues() {
     document.getElementById("totalPrincipal").innerHTML = princFormatted;
     document.getElementById("totalInt").innerHTML = intFormatted;
     document.getElementById("totalCost").innerHTML = totalCostFormatted;
-    CalculatePmts(principal, monthlyPmtRounded, interest, months);
+    calculatePmts(principal, monthlyPmtRounded, interest, months);
 }
 
 // Logic and display function 
-function CalculatePmts(principal, monthly, rate, numOfMonths) {
+function calculatePmts(principal, monthly, rate, numOfMonths) {
     //take in total loan amount
     //take in monthly payment
     let monthCounter = 1 //initialize a counter for the month

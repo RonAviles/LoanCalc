@@ -46,7 +46,7 @@
                         <a class="nav-link active" aria-current="page" href="/code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/RonAviles/LoanCalc">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://ronaviles.netlify.app">About</a>
@@ -63,9 +63,96 @@
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            //Call hello world
-                            function HelloWorld(){
-                            alert("hello world");
+                            function getValues() {
+                                //get all input values from the document
+                                document.getElementById("tableBody").innerHTML = ``;
+                                let principal = document.getElementById("loanAmount").value;
+                                let months = document.getElementById("numOfPayments").value;
+                                let interest = document.getElementById("intRate").value;
+                                // calculate total monthly payment
+                                let pmtForm = (interest / 1200) / (1 - (1 + interest / 1200) ** -months);
+                                let monthlyPmt = principal * pmtForm;
+                                //round monthly payment to 2 decimal point
+                                let monthlyPmtRounded = monthlyPmt.toFixed(2);
+                                //calculate total cost
+                                let totalCost = monthlyPmt * months;
+                                //round total cost to 2 decimal points
+                                let totalCostRounded = totalCost.toFixed(2);
+                                //calculate total interest
+                                let totalInt = totalCost - principal;
+                                //round total interest to 2 deminal points 
+                                let totalIntRounded = totalInt.toFixed(2);
+                                //format values to currency and then print to the display;
+                                var formatter = new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                });
+                                let monthlyFormatted = formatter.format(monthlyPmtRounded);
+                                let princFormatted = formatter.format(principal);
+                                let intFormatted = formatter.format(totalIntRounded);
+                                let totalCostFormatted = formatter.format(totalCostRounded);
+                                document.getElementById("totalMonthly").innerHTML = monthlyFormatted;
+                                document.getElementById("totalPrincipal").innerHTML = princFormatted;
+                                document.getElementById("totalInt").innerHTML = intFormatted;
+                                document.getElementById("totalCost").innerHTML = totalCostFormatted;
+                                CalculatePmts(principal, monthlyPmtRounded, interest, months);
+                            }
+                            
+                            // Logic and display function 
+                            function CalculatePmts(principal, monthly, rate, numOfMonths) {
+                                //take in total loan amount
+                                //take in monthly payment
+                                let monthCounter = 1 //initialize a counter for the month
+                                let balance = principal; //build remaining balance variable
+                                let totalInt = 0; //build total interest tracker
+                                while (monthCounter < numOfMonths) { //create an if variable that checks if the remaining balance is $0
+                                    //if the balance is not zero then it goes through logic 
+                                    let intPmt = balance * (rate / 1200); //Previous Remaining Balance * rate/1200
+                                    let princPmt = monthly - intPmt //calc principal payment (total monthly payment - interest payment)
+                                    totalInt += intPmt; //add t =o interest counter
+                                    let remainingBalance = balance - princPmt; //calculate a temp remaining balance 
+                                    // monthly payment is already rounded so round other values before passing to the table 
+                                    let princPmtRounded = princPmt.toFixed(2);
+                                    let intPmtRounded = intPmt.toFixed(2);
+                                    let totalIntRounded = totalInt.toFixed(2);
+                                    let remainingBalanceRounded = remainingBalance.toFixed(2);
+                                    //inject the elements into a 6 col table 
+                                    document.getElementById("tableBody").innerHTML += `<tr>
+                                    <td>${monthCounter}</td>
+                                    <td>${monthly}</td>
+                                    <td>${princPmtRounded}</td>
+                                    <td>${intPmtRounded}</td>
+                                    <td>${totalIntRounded}</td>
+                                    <td>${remainingBalanceRounded}</td>
+                                    </tr>`;
+                                    //increment month counter and subtract payment from the balance
+                                    balance = remainingBalance;
+                                    monthCounter += 1;
+                                }
+                                if (monthCounter == numOfMonths) {
+                                    let finalPmt = balance;
+                                    //if the balance is not zero then it goes through logic 
+                                    let intPmt = balance * (rate / 1200); //Previous Remaining Balance * rate/1200
+                                    let princPmt = finalPmt - intPmt //calc principal payment (total monthly payment - interest payment)
+                                    totalInt += intPmt; //add t =o interest counter
+                                    let remainingBalance = balance - finalPmt; //calculate a temp remaining balance 
+                                    // monthly payment is already rounded so round other values before passing to the table 
+                                    let finalPmtRounded = finalPmt.toFixed(2);
+                                    let princPmtRounded = princPmt.toFixed(2);
+                                    let intPmtRounded = intPmt.toFixed(2);
+                                    let totalIntRounded = totalInt.toFixed(2);
+                                    let remainingBalanceRounded = remainingBalance.toFixed(2);
+                            
+                                    //inject the elements into a 6 col table 
+                                    document.getElementById("tableBody").innerHTML += `<tr>
+                                    <td>${monthCounter}</td>
+                                    <td>${finalPmtRounded}</td>
+                                    <td>${princPmtRounded}</td>
+                                    <td>${intPmtRounded}</td>
+                                    <td>${totalIntRounded}</td>
+                                    <td>${remainingBalanceRounded}</td>
+                                    </tr>`;
+                                }
                             }
                         </code>
                     </pre>
@@ -73,16 +160,14 @@
                 <div class="col-lg-4">
                     <h4 class="border-bottom mb-3">Code explanation below.</h4>
                     <h5>getValues()</h5>
-                    <p>The code is broken into separate functions to divide the necessary steps before bringing them back together to display the result onto the page.</p>
-                    <p>The getValues( ) function starts and ends the entire process. Starting by identifying what the user-entered start and end values are, converting them to integers and then validating the data before passing it on to the next step.</p>
-
-                    <h5>generateNumbers()</h5>                    
-                    <p>The generateNumbers( ) function creates an array with every number integer from the start value to the end value (inclusive) and then passes it to the final step.</p>
-
-                    <h5>displayNumbers()</h5>
-                    <p>The displayNumbers( ) function iterates through the array that is passed in. On each iteration it assigns a "class" variable either an even or odd value depending on if the current value in the array that is being accessed is even or odd.</p>
-                    <p>Then it injects the currently accessed number and its corresponding class into the table to be displayed. From here we access the injected class in CSS to change the font-weight to bold for every even value.</p>
-                    
+                    <p>
+                        This function retrieves the values tha the user inputs and formats them for display. It also calculates the monthly payment and then passes all the values on to the logic/ display function. 
+                    </p>
+                    <h5>CalculatePmts()</h5>                    
+                    <p>This is the logic and display function. Here 3 counters are initialized for the remaining balance, the month and the total interest paid. Inside of a while loop the principal, monthly interest paid and remaining balance are calculated and passed into the table in proper format while the remaining balance is greater than the monthly payment that was calculated in the getValies function.</p>
+                    <p>
+                        Once the remaining balance is less than the monthly payment a final payment variable is initialized and passed into the table as the final payment to zero out the remaining balance. The remaining values are also calculated using this final payment. 
+                    </p>
                 </div>
             </div>
         </div>
