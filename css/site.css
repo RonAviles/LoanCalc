@@ -80,3 +80,11 @@ pre[class*="language-"] {
     word-break: break-all;
     word-wrap: break-word;
 }
+.appFont {
+    font-family: 'Shrikhand', cursive;
+}
+.tableHeader {
+    background-color: #01395C;
+    color: white;
+    font-weight: bold;
+}

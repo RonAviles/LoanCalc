@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>APP NAME: A Coding Project By Ron Aviles</title>
+    <title>LOAN CALC: A Coding Project By Ron Aviles</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,6 +17,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png?">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
     <link rel="manifest" href="/img/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
 
 </head>
 
@@ -25,7 +28,8 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="/index.html"><img src="img/mark.png"
-                    class="border border-2 d-inline-block align-text-top" width="30" height="30"> APP NAME</a>
+                    class="border border-2 d-inline-block align-text-top" width="30" height="30"> <span
+                    class="appFont">LOAN CALC</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,7 +37,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link"  href="/index.html">Home</a>
+                        <a class="nav-link" href="/index.html">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/app.html">The App</a>
@@ -54,19 +58,80 @@
     <!--main section-->
     <main class="flex-shrink-0">
         <div class="container mt-4">
-            <div class="row row-cols-1 row-cols-lg-2">
-                <div class="col-lg-4 col border-end border-2">
-                    <h1><span class="racefont">APP NAME:</span> A Coding Project</h1>
-                    <h4 class="lead">
-                        Speed through even numbers one loop at a time. A javascript coding exercise using
-                        loops. Write a program that displays the numbers 0 to 100. Display the even numbers in
-                        <strong>BOLD.</strong>
-                    </h4>
-                    <h2 class="mt-5 border-bottom border-2">Instructions</h2>
-                    <p>Enter a starting value and an ending value. Press the button and the values will appear.</p>
+            <div class="row gy-3">
+                <div class="col-12">
+                    <h3 class="fw-bold">Loan Calculator</h3>
                 </div>
-                <div class="col-lg-8">
-                    
+                <div class="col-12 col-md-6 bg-light shadow border rounded ">
+                    <form>
+                        <div class="row gy-2 p-2">
+                            <div class="col-12">
+                                <label for="loanAmount" class="form-label fw-bold">Loan Amount:</label>
+                                <input type="number" min=1 id="loanAmount" class="form-control"
+                                    placeholder="Enter the loan amount" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="numOfPayments" class="form-label fw-bold">Payments:</label>
+                                <input type="number" min=1 id="numOfPayments" class="form-control"
+                                    placeholder="Enter the number of payments" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="intRate" class="form-label fw-bold">Interest:</label>
+                                <input type="number" min=0 id="intRate" class="form-control"
+                                    placeholder="Enter the yearly interest rate" required>
+                            </div>
+                            <div class="col-12 d-flex justify-content-end">                        
+                                <button type="button" id="btn" class="btn btn-outline-primary fw-bold">Calculate</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="row text-center gy-2">
+                        <div class="col-12 text-center">
+                            <h4 class="text-dark fst-italic">Your Monthly Payments:</h4>
+                        </div>
+                        <div class="col-12">
+                            <h1 class="text-dark text-center fw-bold" id="totalMonthly">
+                                <!--This is where total monthly payments will go    -->
+                            </h1>
+                        </div>
+                        <div class="col-6">
+                            Total Principal
+                        </div>
+                        <div class="col-6" id="totalPrincipal">
+                             <!--This is where total principal will go    -->
+                        </div>
+                        <div class="col-6">
+                            Total Interest
+                        </div>
+                        <div class="col-6" id="totalInt">
+                             <!--This is where total interest will go    -->
+                        </div>
+                        <div class="col-6 fw-bold">
+                            Total Cost
+                        </div>
+                        <div class="col-6 fw-bold" id="totalCost">
+                             <!--This is where total cost will go    -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-4">
+                    <table class="table table-sm table-responsive table-striped shadow rounded">
+                        <thead>
+                            <tr class="tableHeader">
+                              <th scope="col">Month</th>
+                              <th scope="col">Payment</th>
+                              <th scope="col">Principal</th>
+                              <th scope="col">Interest</th>
+                              <th scope="col">Total Interest</th>
+                              <th scope="col">Balance</th>
+                            </tr>
+                          </thead>
+                          <tbody id="tableBody">
+
+                          </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -83,11 +148,14 @@
                 </div>"
                 <div class="col-12 col-lg d-flex align-items-center justify-content-start justify-content-lg-end">
                     <div class="row">
-                        <div class="col social"><a href="https://www.linkedin.com/in/ron-aviles/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <div class="col social"><a href="https://www.linkedin.com/in/ron-aviles/" target="_blank"><i
+                                    class="fab fa-linkedin fa-2x"></i></a>
                         </div>
-                        <div class="col social"><a href="https://github.com/RonAviles" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+                        <div class="col social"><a href="https://github.com/RonAviles" target="_blank"><i
+                                    class="fab fa-github fa-2x"></i></a>
                         </div>
-                        <div class="col social"><a href="https://twitter.com/RonAviles_" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                        <div class="col social"><a href="https://twitter.com/RonAviles_" target="_blank"><i
+                                    class="fab fa-twitter fa-2x"></i></a>
                         </div>
                     </div>
                 </div>
@@ -99,6 +167,9 @@
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
     </script>
     <script src="js/site.js"></script>
+    <script>
+        document.getElementById("btn").addEventListener("click", getValues);
+    </script>
 </body>
 
 </html>
